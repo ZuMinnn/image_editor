@@ -10,7 +10,7 @@ class ImageEditorUI:
     # Khởi tạo ứng dụng
     def __init__(self, master):
         self.master = master
-        self.master.title('Image Editor - Advanced UI')
+        self.master.title('Image Editor')
         self.master.geometry('900x700')
         self.master.configure(bg='#2C3E50')  # Thiết lập màu nền
         
