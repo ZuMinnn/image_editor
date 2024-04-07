@@ -1,5 +1,6 @@
 # app sử dụng thư viện tkinter làm giao diện: pip install tk
 # app sử dụng thư viện PIl (gói pillow) để xử lí ảnh: pip install pillow 
+# sử dụng powerShell or cmd để install packages
 # from mvu with luv <3
 
 import tkinter as tk
@@ -144,11 +145,13 @@ class ImageEditorUI:
         rotate_button = tk.Button(controls_frame, text='Rotate', command=self.rotate_image, font=('Arial', 12), bg='#3498DB', fg='white')
         rotate_button.pack(side=tk.LEFT, padx=10)
 
-        flip_left_button = tk.Button(controls_frame, text='Flip Right/Left', command=lambda: self.flip_image('left'), font=('Arial', 12), bg='#9B59B6', fg='white')
-        flip_left_button.pack(side=tk.LEFT, padx=10)
+        # Nút Lật Ảnh theo Chiều Ngang
+        flip_horizontal_button = tk.Button(controls_frame, text='Flip Left/Right', command=lambda: self.flip_image('left'), font=('Arial', 12), bg='#9B59B6', fg='white')
+        flip_horizontal_button.pack(side=tk.LEFT, padx=10)
 
-        flip_right_button = tk.Button(controls_frame, text='Flip Up/Down', command=lambda: self.flip_image('right'), font=('Arial', 12), bg='#9B59B6', fg='white')
-        flip_right_button.pack(side=tk.LEFT, padx=10)
+    # Nút Lật Ảnh theo Chiều Dọc
+        flip_vertical_button = tk.Button(controls_frame, text='Flip Up/Down', command=lambda: self.flip_image('up'), font=('Arial', 12), bg='#3498DB', fg='white')
+        flip_vertical_button.pack(side=tk.LEFT, padx=10)
         
         reset_button = tk.Button(controls_frame, text='Reset', command=self.reset_image, font=('Arial', 12), bg='#2ECC71', fg='white')
         reset_button.pack(side=tk.LEFT, padx=10)
@@ -165,9 +168,9 @@ class ImageEditorUI:
     def flip_image(self, direction):
         # Lật ảnh
         if self.processed_image:
-            if direction == 'left':
+            if direction == 'left'or direction == 'right' :
                 self.processed_image = self.processed_image.transpose(Image.FLIP_LEFT_RIGHT)
-            elif direction == 'right':
+            elif direction == 'up' or direction == 'down':
                 self.processed_image = self.processed_image.transpose(Image.FLIP_TOP_BOTTOM)
             self.show_image(self.processed_image)
         else:
